@@ -1,0 +1,41 @@
+name: Bug report / Ошибка
+description: Crash, wrong line numbers, config not applied / Падение, неверные строки, конфиг не применяется
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English or Russian is fine. / Можно писать на английском или русском.
+  - type: input
+    id: command
+    attributes:
+      label: Command / Команда
+      placeholder: npx slopscan src --ci --max-slop 20
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened / Что произошло
+      description: Full output, including the exit code. / Полный вывод, включая код выхода.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected / Ожидаемое поведение
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction / Минимальное воспроизведение
+      description: Files and uislop.config.json if any. / Файлы и uislop.config.json, если есть.
+  - type: input
+    id: env
+    attributes:
+      label: slopscan, Node.js and OS versions / Версии slopscan, Node.js и ОС
+      placeholder: slopscan 0.1.0, Node.js 22.11, macOS 15
+    validations:
+      required: true

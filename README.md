@@ -1,19 +1,63 @@
+<div align="center">
+
 # uislop
+
+**Find and fix the AI-template look in React, Next.js and Tailwind interfaces.**
+
+Local and deterministic. No LLM, no API key, under a second.
+
+[![CI](https://github.com/stonexy1/uislop/actions/workflows/ci.yml/badge.svg)](https://github.com/stonexy1/uislop/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/slopscan?color=18181b&label=npm)](https://www.npmjs.com/package/slopscan)
+[![Node](https://img.shields.io/badge/node-%E2%89%A520.12-18181b)](package.json)
+[![License: MIT](https://img.shields.io/badge/license-MIT-18181b)](LICENSE)
+
+**English** · [Русский](README.ru.md)
+
+<img src="docs/assets/report-dirty.png" alt="slopscan report for a landing page: 71 findings, Slop Score 99/100, Pure AI Slop" width="760">
+
+</div>
 
 `slopscan` scores how much a frontend codebase looks AI-generated. It parses .tsx, .jsx, .css and .html files,
 applies 20 rules in six categories and reports a Slop Score from 0 to 100, with the file and line of every finding.
+Then it hands your coding agent a precise fix prompt.
 
-- Local and deterministic: no LLM, no API key, no network calls. A 300-file, 62,000-line test corpus scans in about 0.75 s including Node startup.
-- AST-based for JSX/TSX (Babel parser): reads `className`, `cn()`, `clsx()`, `cva()`, template literals and `@apply`.
-- Writes a fix prompt for Claude Code or Cursor, an SVG badge, and installs an agent skill.
-- One runtime dependency (`@babel/parser`). Node.js 20.12 or newer.
+- **Local and deterministic**: no LLM, no API key, no network calls. A 300-file, 62,000-line test corpus scans in about 0.75 s including Node startup.
+- **AST-based** for JSX/TSX (Babel parser): reads `className`, `cn()`, `clsx()`, `cva()`, template literals and `@apply`.
+- **Closes the loop**: writes a fix prompt for Claude Code or Cursor, an SVG badge, a CI gate, and installs an agent skill.
+- **Small**: one runtime dependency (`@babel/parser`). Node.js 20.12 or newer.
+
+## Contents
+
+- [Quick start](#quick-start)
+- [What it flags](#what-it-flags)
+- [Output](#output)
+- [Score and tiers](#score-and-tiers)
+- [Rules](#rules)
+- [Commands and flags](#commands-and-flags)
+- [Fix prompts](#fix-prompts) · [Agent skill](#agent-skill) · [Badge](#badge) · [CI](#ci)
+- [Configuration](#configuration) · [Ignore comments](#ignore-comments)
+- [Limits](#limits) · [Contributing](#contributing) · [License](#license)
+
+## Quick start
 
 ```sh
-npx slopscan            # scan the current directory
-npx slopscan src        # scan a folder or file
+npx slopscan                       # 1. scan the current directory
+npx slopscan src --prompt | pbcopy # 2. copy a fix prompt for your agent
+npx slopscan init                  # 3. teach Claude Code / Cursor to avoid the patterns
 ```
 
 The package installs two equivalent commands: `slopscan` and `uislop`. Examples below use `npx slopscan`.
+
+## What it flags
+
+| Category | Typical pattern | What to do instead |
+|---|---|---|
+| `color-slop` | `from-indigo-500 via-purple-500 to-pink-500`, `shadow-purple-500/50`, `#000` | A zinc or slate neutral scale and one accent |
+| `emoji-ui` | Emoji used as icons in headings, buttons and cards | SVG icons (lucide-react or inline SVG) |
+| `copy-slop` | Stock phrases ("Supercharge your…", "Unleash the power…"), "Acme Corp", "John Doe" | Specific copy about what the product does, for whom |
+| `layout-slop` | Three identical icon cards, template hero, `rounded-3xl` and `shadow-2xl` everywhere | Asymmetry, one radius, borders instead of heavy shadows |
+| `typo-slop` | Prices and metrics without `tabular-nums`, paragraphs without a width limit | `tabular-nums`, `max-w-prose` |
+| `fake-ui` | `href="#"`, `onClick={() => {}}`, invented "99.9% uptime" stats | Real links and handlers, real data or nothing |
 
 ## Output
 
@@ -40,6 +84,10 @@ Done in 47 ms
 ```
 
 When the score is above 15, the report ends with a fix prompt block.
+
+For comparison, a clean project:
+
+<img src="docs/assets/report-clean.png" alt="slopscan report for a clean project: 0/100, Bespoke Craft, no findings" width="520">
 
 ## Score and tiers
 
@@ -126,7 +174,7 @@ npx slopscan init --all        # also .cursor/skills and .agents/skills
 ```
 
 `init` never overwrites a file that differs from the bundled skill unless you pass `--force`. The skill is also
-published in this repository under `skill/`, so `npx skills add <owner>/<repo>` works too. It tells the agent which
+published in this repository under `skill/`, so `npx skills add stonexy1/uislop` works too. It tells the agent which
 patterns to avoid and to verify its work with `npx slopscan <path> --ci --max-slop 15`.
 
 ## Badge
@@ -139,7 +187,9 @@ npx slopscan --badge
 ![UI Slop](./uislop-badge.svg)
 ```
 
-The badge reads `UI Slop | 8/100 · Bespoke Craft`, colored by tier.
+The badge reads `UI Slop | 8/100 · Bespoke Craft`, colored by tier:
+
+<img src="docs/assets/badge-clean.svg" alt="UI Slop badge: 0/100 Bespoke Craft"> <img src="docs/assets/badge-dirty.svg" alt="UI Slop badge: 98/100 Pure AI Slop">
 
 ## CI
 
@@ -202,7 +252,11 @@ The badge reads `UI Slop | 8/100 · Bespoke Craft`, colored by tier.
 - Directory names `build`, `out` and `dist` are skipped at any depth unless passed as the scan path.
 - An unrelated npm package named `uislop` exists. This project is published as `slopscan`.
 
-## Development
+## Contributing
+
+False positives, missed patterns and new rule ideas are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and open an
+issue with the [false positive](https://github.com/stonexy1/uislop/issues/new?template=false_positive.yml) or
+[rule request](https://github.com/stonexy1/uislop/issues/new?template=rule_request.yml) form.
 
 ```sh
 npm install
@@ -215,4 +269,4 @@ Building and testing need Node.js 22.18 or newer; the published `dist` runs on N
 
 ## License
 
-MIT
+[MIT](LICENSE)

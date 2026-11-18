@@ -4,6 +4,14 @@
   "description": "Local, no-LLM scanner that scores how AI-generated your UI looks (Slop Score 0-100), writes fix prompts, badges and an agent skill.",
   "keywords": ["ui", "slop", "ai", "lint", "tailwind", "react", "claude-code", "cursor", "skill"],
   "license": "MIT",
+  "homepage": "https://github.com/stonexy1/uislop#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stonexy1/uislop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stonexy1/uislop/issues"
+  },
   "type": "module",
   "bin": {
     "slopscan": "dist/cli.js",

@@ -7,6 +7,7 @@ import { ROOT } from "./helpers";
 
 const read = (path: string) => readFileSync(join(ROOT, path), "utf8");
 const readme = read("README.md");
+const readmeRu = read("README.ru.md");
 const skill = read("skill/SKILL.md");
 const pkg = JSON.parse(read("package.json")) as { name: string; bin: Record<string, string> };
 const OTHER_TOOLS = new Set(["skills"]);
@@ -25,6 +26,7 @@ function frontmatter(text: string): Record<string, string> {
 describe("docs consistency", () => {
   it.each([
     ["README.md", readme],
+    ["README.ru.md", readmeRu],
     ["skill/SKILL.md", skill],
   ])("%s uses the npx command constant", (_, text) => {
     const commands = [...text.matchAll(/npx ([\w@./-]+)/g)].map((m) => m[1] as string).filter((w) => !OTHER_TOOLS.has(w));
@@ -37,9 +39,10 @@ describe("docs consistency", () => {
     expect(pkg.bin).toEqual({ [BIN_NAME]: "dist/cli.js", [BIN_ALIAS]: "dist/cli.js" });
   });
 
-  it("documents every rule in README and SKILL.md", () => {
+  it("documents every rule in both READMEs and SKILL.md", () => {
     for (const rule of ALL_RULES) {
       expect(readme).toContain(`\`${rule.id}\``);
+      expect(readmeRu).toContain(`\`${rule.id}\``);
       expect(skill).toContain(`\`${rule.id}\``);
     }
   });
