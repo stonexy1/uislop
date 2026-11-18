@@ -10,8 +10,12 @@ const run = (...args: string[]) =>
 describe("built CLI", () => {
   beforeAll(ensureBuilt);
 
-  it("keeps the shebang and executable bit", () => {
+  it("keeps the shebang", () => {
     expect(readFileSync(CLI, "utf8").split("\n")[0]).toBe("#!/usr/bin/env node");
+  });
+
+  // Windows has no executable bit; npm creates command shims there instead.
+  it.skipIf(process.platform === "win32")("sets the executable bit", () => {
     expect(statSync(CLI).mode & 0o111).not.toBe(0);
   });
 
