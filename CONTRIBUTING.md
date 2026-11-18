@@ -11,7 +11,7 @@ Thanks for helping make UI less generic. The most valuable contributions are:
 3. **Bug reports**: crashes, wrong line numbers, config not applied. Use the
    [bug report form](https://github.com/stonexy1/uislop/issues/new?template=bug_report.yml).
 
-Always include a minimal snippet (a few lines of TSX, CSS or HTML) and the output of `npx slopscan <file> --json`.
+Always include a minimal snippet (a few lines of TSX, CSS or HTML) and the output of `npx @stonexy/slopscan <file> --json`.
 
 ## Development
 
@@ -66,7 +66,7 @@ Project layout:
 3. **Ошибки**: падения, неверные номера строк, неприменённый конфиг. Форма:
    [bug report](https://github.com/stonexy1/uislop/issues/new?template=bug_report.yml).
 
-Всегда прикладывайте минимальный фрагмент (несколько строк TSX, CSS или HTML) и вывод `npx slopscan <file> --json`.
+Всегда прикладывайте минимальный фрагмент (несколько строк TSX, CSS или HTML) и вывод `npx @stonexy/slopscan <file> --json`.
 Issue и pull request можно писать на русском.
 
 ## Разработка

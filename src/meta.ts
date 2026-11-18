@@ -3,7 +3,7 @@ import { createRequire } from "node:module";
 declare const __VERSION__: string | undefined;
 
 export const BRAND = "uislop";
-export const PKG_NAME = "slopscan";
+export const PKG_NAME = "@stonexy/slopscan";
 export const BIN_NAME = "slopscan";
 export const BIN_ALIAS = "uislop";
 export const NPX = `npx ${PKG_NAME}`;

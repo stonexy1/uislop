@@ -27,7 +27,7 @@ Slop Score  47/100  Template Vibe
 Worst file  src/Landing.tsx (41)
 Done in X ms
 
-Fix prompt  copy into Claude Code or Cursor, or run: npx slopscan src --prompt
+Fix prompt  copy into Claude Code or Cursor, or run: npx @stonexy/slopscan src --prompt
 ────────────────────────────────────────────────────────────────────────────────────────────────────
 PROMPT
 ────────────────────────────────────────────────────────────────────────────────────────────────────

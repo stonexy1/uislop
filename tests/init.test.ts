@@ -12,7 +12,7 @@ describe("init", () => {
     const dir = tmpDir();
     const result = runInit({ ...base, dir });
     expect(result.exitCode).toBe(0);
-    expect(result.lines).toEqual([`created   ${SKILL}`, 'Next: ask your agent to use the "uislop" skill, or run npx slopscan']);
+    expect(result.lines).toEqual([`created   ${SKILL}`, 'Next: ask your agent to use the "uislop" skill, or run npx @stonexy/slopscan']);
     expect(readFileSync(join(dir, SKILL), "utf8")).toBe(bundledSkill());
   });
 

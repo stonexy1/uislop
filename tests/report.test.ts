@@ -54,7 +54,7 @@ describe("other renderers", () => {
   it("prints JSON with the documented shape", () => {
     const json = JSON.parse(renderJson(sampleResult(), { maxSlop: 20, passed: false }));
     expect(Object.keys(json)).toEqual(["schemaVersion", "tool", "root", "configPath", "durationMs", "score", "categories", "files", "findings", "warnings", "stats"]);
-    expect(json.tool.name).toBe("slopscan");
+    expect(json.tool.name).toBe("@stonexy/slopscan");
     expect(json.score).toMatchObject({ value: 47, tier: "template-vibe", maxSlop: 20, passed: false });
     expect(json.files[0]).toHaveProperty("parse", "ok");
   });

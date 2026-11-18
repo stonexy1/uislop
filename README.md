@@ -41,12 +41,12 @@ Then it hands your coding agent a precise fix prompt.
 ## Quick start
 
 ```sh
-npx slopscan                       # 1. scan the current directory
-npx slopscan src --prompt | pbcopy # 2. copy a fix prompt for your agent
-npx slopscan init                  # 3. teach Claude Code / Cursor to avoid the patterns
+npx @stonexy/slopscan                       # 1. scan the current directory
+npx @stonexy/slopscan src --prompt | pbcopy # 2. copy a fix prompt for your agent
+npx @stonexy/slopscan init                  # 3. teach Claude Code / Cursor to avoid the patterns
 ```
 
-The package installs two equivalent commands: `slopscan` and `uislop`. Examples below use `npx slopscan`.
+The package installs two equivalent commands: `slopscan` and `uislop`. Examples below use `npx @stonexy/slopscan`.
 
 ## What it flags
 
@@ -135,8 +135,8 @@ Rule options: `rounded-3xl-overuse.minCount` (3), `heavy-shadow.minCount` (2), `
 ## Commands and flags
 
 ```
-npx slopscan [path...] [options]
-npx slopscan init [--cursor] [--agents] [--all] [--force] [--dir <path>]
+npx @stonexy/slopscan [path...] [options]
+npx @stonexy/slopscan init [--cursor] [--agents] [--all] [--force] [--dir <path>]
 ```
 
 | Flag | Effect |
@@ -159,28 +159,28 @@ error, 3 internal error.
 ## Fix prompts
 
 ```sh
-npx slopscan src --prompt | pbcopy
+npx @stonexy/slopscan src --prompt | pbcopy
 ```
 
 The prompt lists up to 30 findings by impact, grouped by file with `L<line>:<column>`, adds design direction for the
 categories that fired, forbids logic changes, and ends with a verification step:
-`npx slopscan src --ci --max-slop 15` until it exits 0.
+`npx @stonexy/slopscan src --ci --max-slop 15` until it exits 0.
 
 ## Agent skill
 
 ```sh
-npx slopscan init              # writes .claude/skills/uislop/SKILL.md
-npx slopscan init --all        # also .cursor/skills and .agents/skills
+npx @stonexy/slopscan init              # writes .claude/skills/uislop/SKILL.md
+npx @stonexy/slopscan init --all        # also .cursor/skills and .agents/skills
 ```
 
 `init` never overwrites a file that differs from the bundled skill unless you pass `--force`. The skill is also
 published in this repository under `skill/`, so `npx skills add stonexy1/uislop` works too. It tells the agent which
-patterns to avoid and to verify its work with `npx slopscan <path> --ci --max-slop 15`.
+patterns to avoid and to verify its work with `npx @stonexy/slopscan <path> --ci --max-slop 15`.
 
 ## Badge
 
 ```sh
-npx slopscan --badge
+npx @stonexy/slopscan --badge
 ```
 
 ```md
@@ -194,7 +194,7 @@ The badge reads `UI Slop | 8/100 · Bespoke Craft`, colored by tier:
 ## CI
 
 ```yaml
-- run: npx slopscan --ci --max-slop 20
+- run: npx @stonexy/slopscan --ci --max-slop 20
 ```
 
 ## Configuration
