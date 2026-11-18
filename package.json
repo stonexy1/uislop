@@ -1,0 +1,44 @@
+{
+  "name": "slopscan",
+  "version": "0.1.0",
+  "description": "Local, no-LLM scanner that scores how AI-generated your UI looks (Slop Score 0-100), writes fix prompts, badges and an agent skill.",
+  "keywords": ["ui", "slop", "ai", "lint", "tailwind", "react", "claude-code", "cursor", "skill"],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "slopscan": "dist/cli.js",
+    "uislop": "dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "skill", "README.md", "LICENSE"],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "selfcheck": "node dist/cli.js tests/fixtures/clean --ci --max-slop 15",
+    "prepublishOnly": "npm run typecheck && npm run build && npm test"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.29.14"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.29.14",
+    "@types/node": "^22.20.5",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.1"
+  }
+}

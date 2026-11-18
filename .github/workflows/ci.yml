@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  node20:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --omit=dev
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Clean fixture passes
+        run: node dist/cli.js tests/fixtures/clean --ci --max-slop 15
+      - name: Dirty fixture fails
+        run: |
+          set +e
+          node dist/cli.js tests/fixtures/dirty --ci --max-slop 20 --quiet
+          test $? -eq 1

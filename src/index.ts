@@ -1,0 +1,10 @@
+export { scan, runScan, type ScanOptions, type ScanRun } from "./scan";
+export { scoreFindings, computeScore, tierFor, SCORING, TIERS } from "./scorer";
+export { buildPrompt, type PromptOptions } from "./prompt-builder";
+export { renderBadge } from "./badge";
+export { renderReport, renderJson, renderQuiet } from "./report";
+export { parseConfig, loadConfig, defaultConfig } from "./config";
+export { ALL_RULES, CATEGORIES } from "./rules/index";
+export { runCli } from "./run";
+export { VERSION } from "./meta";
+export type * from "./types";
