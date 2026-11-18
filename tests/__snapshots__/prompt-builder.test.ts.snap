@@ -40,7 +40,7 @@ DESIGN DIRECTION
 - Prefer restraint: one accent color, one radius, one shadow level, consistent 4px spacing.
 
 VERIFY
-1. Run \`npx slopscan src --ci --max-slop 15\` and repeat until it exits 0. Do not satisfy it by adding uislop-ignore comments to real problems.
+1. Run \`npx @stonexy/slopscan src --ci --max-slop 15\` and repeat until it exits 0. Do not satisfy it by adding uislop-ignore comments to real problems.
 2. Run the project's typecheck, lint and tests; they must behave exactly as before your changes.
 3. Reply with a short per-file summary (at most 5 lines) of what you changed."
 `;

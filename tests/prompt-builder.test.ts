@@ -10,7 +10,7 @@ describe("buildPrompt", () => {
   it("contains no ANSI codes and uses the npx command", () => {
     const prompt = buildPrompt(sampleResult(), { path: "src" });
     expect(prompt).not.toMatch(/\u001b\[/);
-    expect(prompt).toContain("Run `npx slopscan src --ci --max-slop 15`");
+    expect(prompt).toContain("Run `npx @stonexy/slopscan src --ci --max-slop 15`");
     expect(prompt.startsWith("You are fixing")).toBe(true);
   });
 

@@ -2,13 +2,13 @@
 name: uislop
 description: Build and review React, Next.js, Tailwind, HTML and CSS UI without the tells of AI-generated design (purple gradients, emoji icons, cliché copy, identical icon-card grids, template heroes, fake stats and dead links). Use when asked to build, polish or review frontend UI, when a design "looks AI-generated", or before finishing any change to .tsx, .jsx, .css or .html files; verifies the result with the local slopscan CLI (no API key, under a second).
 license: MIT
-compatibility: Claude Code, Cursor and other Agent Skills clients. Needs Node.js 20.12+ to run `npx slopscan`.
-allowed-tools: Bash(npx slopscan *)
+compatibility: Claude Code, Cursor and other Agent Skills clients. Needs Node.js 20.12+ to run `npx @stonexy/slopscan`.
+allowed-tools: Bash(npx @stonexy/slopscan *)
 ---
 
 # uislop: UI without the AI template look
 
-`npx slopscan` is a local static analyzer. It parses .tsx, .jsx, .css and .html files, applies 20 rules in six
+`npx @stonexy/slopscan` is a local static analyzer. It parses .tsx, .jsx, .css and .html files, applies 20 rules in six
 categories and prints a Slop Score from 0 to 100 (lower is better). It makes no network calls and uses no LLM.
 
 ## When to use
@@ -24,12 +24,12 @@ Skip it for back-end-only changes, scripts, tests and non-UI code.
 1. Before writing, decide the system: a zinc or slate neutral scale plus one accent color, a type scale of two or
    three sizes, one border radius, and one icon set (lucide-react if installed, otherwise inline SVG).
 2. While writing, avoid every pattern in the table below.
-3. After writing, run `npx slopscan <changed paths> --json` and read `findings[]` (`file`, `line`, `ruleId`,
-   `message`, `fixHint`). Humans can read the plain report: `npx slopscan <path>`.
+3. After writing, run `npx @stonexy/slopscan <changed paths> --json` and read `findings[]` (`file`, `line`, `ruleId`,
+   `message`, `fixHint`). Humans can read the plain report: `npx @stonexy/slopscan <path>`.
 4. Fix the findings with the most `points` first. Change presentation only.
-5. Repeat until `npx slopscan <path> --ci --max-slop 15` exits 0.
+5. Repeat until `npx @stonexy/slopscan <path> --ci --max-slop 15` exits 0.
 
-`npx slopscan <path> --prompt` prints a ready-made fix prompt with every finding as file:line, if you prefer to work
+`npx @stonexy/slopscan <path> --prompt` prints a ready-made fix prompt with every finding as file:line, if you prefer to work
 from a checklist.
 
 ## Banned patterns and replacements

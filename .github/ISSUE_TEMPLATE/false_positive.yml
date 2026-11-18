@@ -24,7 +24,7 @@ body:
   - type: textarea
     id: output
     attributes:
-      label: Output of `npx slopscan <file> --json` / Вывод команды
+      label: Output of `npx @stonexy/slopscan <file> --json` / Вывод команды
       render: json
   - type: textarea
     id: why

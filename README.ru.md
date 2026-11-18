@@ -42,12 +42,12 @@
 ## Быстрый старт
 
 ```sh
-npx slopscan                       # 1. просканировать текущую папку
-npx slopscan src --prompt | pbcopy # 2. скопировать fix-промпт для агента
-npx slopscan init                  # 3. научить Claude Code / Cursor избегать этих паттернов
+npx @stonexy/slopscan                       # 1. просканировать текущую папку
+npx @stonexy/slopscan src --prompt | pbcopy # 2. скопировать fix-промпт для агента
+npx @stonexy/slopscan init                  # 3. научить Claude Code / Cursor избегать этих паттернов
 ```
 
-Пакет устанавливает две равноценные команды: `slopscan` и `uislop`. В примерах ниже используется `npx slopscan`.
+Пакет устанавливает две равноценные команды: `slopscan` и `uislop`. В примерах ниже используется `npx @stonexy/slopscan`.
 
 ## Что он находит
 
@@ -137,8 +137,8 @@ Done in 47 ms
 ## Команды и флаги
 
 ```
-npx slopscan [path...] [options]
-npx slopscan init [--cursor] [--agents] [--all] [--force] [--dir <path>]
+npx @stonexy/slopscan [path...] [options]
+npx @stonexy/slopscan init [--cursor] [--agents] [--all] [--force] [--dir <path>]
 ```
 
 | Флаг | Действие |
@@ -161,28 +161,28 @@ npx slopscan init [--cursor] [--agents] [--all] [--force] [--dir <path>]
 ## Fix-промпты
 
 ```sh
-npx slopscan src --prompt | pbcopy
+npx @stonexy/slopscan src --prompt | pbcopy
 ```
 
 Промпт содержит до 30 находок по убыванию влияния, сгруппированных по файлам с `L<строка>:<колонка>`, добавляет
 дизайн-направление для сработавших категорий, запрещает менять логику и заканчивается шагом проверки:
-`npx slopscan src --ci --max-slop 15`, пока команда не завершится с кодом 0.
+`npx @stonexy/slopscan src --ci --max-slop 15`, пока команда не завершится с кодом 0.
 
 ## Агентский скилл
 
 ```sh
-npx slopscan init              # пишет .claude/skills/uislop/SKILL.md
-npx slopscan init --all        # плюс .cursor/skills и .agents/skills
+npx @stonexy/slopscan init              # пишет .claude/skills/uislop/SKILL.md
+npx @stonexy/slopscan init --all        # плюс .cursor/skills и .agents/skills
 ```
 
 `init` никогда не перезаписывает файл, отличающийся от встроенного скилла, без флага `--force`. Скилл также лежит в
 этом репозитории в папке `skill/`, поэтому работает и `npx skills add stonexy1/uislop`. Он объясняет агенту, каких
-паттернов избегать, и требует проверять работу командой `npx slopscan <path> --ci --max-slop 15`.
+паттернов избегать, и требует проверять работу командой `npx @stonexy/slopscan <path> --ci --max-slop 15`.
 
 ## Бейдж
 
 ```sh
-npx slopscan --badge
+npx @stonexy/slopscan --badge
 ```
 
 ```md
@@ -196,7 +196,7 @@ npx slopscan --badge
 ## CI
 
 ```yaml
-- run: npx slopscan --ci --max-slop 20
+- run: npx @stonexy/slopscan --ci --max-slop 20
 ```
 
 ## Конфигурация

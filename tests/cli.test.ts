@@ -100,7 +100,7 @@ describe("cli", () => {
 
   it("prints version and help", async () => {
     expect((await cli(["--version"])).stdout).toMatch(/^\d+\.\d+\.\d+\n$/);
-    expect((await cli(["--help"])).stdout).toContain("npx slopscan <path> --ci --max-slop 15");
+    expect((await cli(["--help"])).stdout).toContain("npx @stonexy/slopscan <path> --ci --max-slop 15");
   });
 
   it("runs init", async () => {
