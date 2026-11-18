@@ -1,0 +1,2 @@
+# Keep text files with LF line endings in the repository and in working copies on every OS.
+* text=auto eol=lf

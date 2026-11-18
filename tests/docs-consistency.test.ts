@@ -5,7 +5,8 @@ import { NPX, PKG_NAME, BIN_NAME, BIN_ALIAS, SKILL_NAME } from "../src/meta";
 import { ALL_RULES } from "../src/rules/index";
 import { ROOT } from "./helpers";
 
-const read = (path: string) => readFileSync(join(ROOT, path), "utf8");
+// Normalize CRLF so the checks also pass on Windows checkouts with core.autocrlf=true.
+const read = (path: string) => readFileSync(join(ROOT, path), "utf8").replace(/\r\n/g, "\n");
 const readme = read("README.md");
 const readmeRu = read("README.ru.md");
 const skill = read("skill/SKILL.md");
