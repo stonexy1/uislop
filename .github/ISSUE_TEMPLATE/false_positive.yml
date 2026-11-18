@@ -1,0 +1,39 @@
+name: False positive / Ложное срабатывание
+description: slopscan flags an intentional design / slopscan ругается на осознанный дизайн
+labels: ["false positive"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English or Russian is fine. / Можно писать на английском или русском.
+  - type: input
+    id: rule
+    attributes:
+      label: Rule ID / ID правила
+      placeholder: color-slop/ai-gradient
+    validations:
+      required: true
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Minimal snippet / Минимальный фрагмент
+      description: A few lines of TSX, JSX, CSS or HTML that reproduce the finding. / Несколько строк, на которых воспроизводится находка.
+      render: tsx
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output of `npx slopscan <file> --json` / Вывод команды
+      render: json
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it is intentional / Почему это осознанное решение
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: slopscan version / Версия slopscan
+      placeholder: 0.1.0

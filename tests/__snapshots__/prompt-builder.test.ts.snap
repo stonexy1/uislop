@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildPrompt > renders the full template 1`] = `
+"You are fixing the visual design of an existing front-end codebase. A static analyzer (uislop) scored it 47/100 ("Template Vibe"; lower is better) because it reads as AI-generated. Fix only the design issues listed below.
+
+HARD CONSTRAINTS
+- Do NOT change business logic: props, state, hooks, event handler bodies, data fetching, routing, form validation, API calls, types, or tests.
+- Change presentation only: className/class strings, inline styles, CSS, static copy, icons, and the minimum markup (wrappers, semantics) needed for layout.
+- Keep every import, export and component signature working. For icons, use the icon library already installed (lucide-react if present), otherwise inline SVG. Do not add dependencies.
+- Wire-ups flagged as fake (dead links, empty or console-only handlers) are the exception: connect them to the real function or route that already exists in the code; if none exists, remove the control and say so in your summary.
+- If a finding is intentional, keep the code and add \`// uislop-ignore <rule-id>\` above it ({/* uislop-ignore <rule-id> */} in JSX children, /* … */ in CSS, <!-- … --> in HTML) instead of rewriting.
+
+FINDINGS (6 of 7, highest impact first)
+src/Landing.tsx
+- L14:5 [color-slop/ai-gradient] Gradient from-indigo-500 to-purple-500 is the default AI palette
+  Fix: Fix for color-slop/ai-gradient.
+- L20:5 [layout-slop/template-hero] Template hero: centered headline with pill badge and "Get Started"/"Learn More" buttons
+  Fix: Fix for layout-slop/template-hero.
+- L31:5 [fake-ui/dead-link] Dead link: href="#"
+  Fix: Fix for fake-ui/dead-link.
+- L44:5 [copy-slop/cliche-phrase] LLM cliché "supercharge"
+  Fix: Fix for copy-slop/cliche-phrase.
+
+src/Dashboard.tsx
+- L8:5 [fake-ui/noop-handler] Button does nothing: onClick handler is empty
+  Fix: Fix for fake-ui/noop-handler.
+
+src/styles.css
+- L2:5 [color-slop/neon-shadow] Neon tinted shadow box-shadow: 0 0 30px rgba(139, 92, 246, 0.5) (colored glow)
+  Fix: Fix for color-slop/neon-shadow.
+
+…and 1 more finding in 1 file. After fixing the above, re-run the check; the next ones will surface.
+
+DESIGN DIRECTION
+- Palette: neutrals from zinc/slate/neutral (text-zinc-900, bg-zinc-50, border-zinc-200); one accent used on primary actions only; no purple/indigo/pink gradients, no colored glows, no pure #000.
+- Copy: specific and concrete; say what the product does for whom; no hype adjectives; realistic, varied sample names and data.
+- Layout: break the symmetry: asymmetric grids, one radius (rounded-lg/xl), border instead of heavy shadows, a left-aligned hero with the real product visible.
+- Typography: tabular-nums on every number/price/table cell; paragraphs capped with max-w-prose.
+- Honesty: no dead links, no no-op buttons, no invented stats or testimonials; use real data or remove it.
+- Prefer restraint: one accent color, one radius, one shadow level, consistent 4px spacing.
+
+VERIFY
+1. Run \`npx slopscan src --ci --max-slop 15\` and repeat until it exits 0. Do not satisfy it by adding uislop-ignore comments to real problems.
+2. Run the project's typecheck, lint and tests; they must behave exactly as before your changes.
+3. Reply with a short per-file summary (at most 5 lines) of what you changed."
+`;

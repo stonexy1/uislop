@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderReport > renders the no-color report 1`] = `
+"uislop 0.1.0  src · 3 files · 60 UI elements
+
+src/Landing.tsx  4 findings · score 41
+  14:5     error  color-slop/ai-gradient          Gradient from-indigo-500 to-purple-500 is the def…
+  20:5     error  layout-slop/template-hero       Template hero: centered headline with pill badge …
+  31:5     warn   fake-ui/dead-link               Dead link: href="#"
+  44:5     warn   copy-slop/cliche-phrase         LLM cliché "supercharge"
+
+src/Dashboard.tsx  2 findings · score 11
+  8:5      warn   fake-ui/noop-handler            Button does nothing: onClick handler is empty
+  12:5     warn   typo-slop/missing-tabular-nums  Number "$1,299" without tabular-nums
+
+src/styles.css  1 finding · score 8
+  2:5      warn   color-slop/neon-shadow          Neon tinted shadow box-shadow: 0 0 30px rgba(139,…
+
+Category        Findings  Points
+color-slop             2      17
+fake-ui                2      10
+layout-slop            1      12
+copy-slop              1       5
+typo-slop              1       3
+
+Slop Score  47/100  Template Vibe
+Worst file  src/Landing.tsx (41)
+Done in X ms
+
+Fix prompt  copy into Claude Code or Cursor, or run: npx slopscan src --prompt
+────────────────────────────────────────────────────────────────────────────────────────────────────
+PROMPT
+────────────────────────────────────────────────────────────────────────────────────────────────────
+"
+`;
